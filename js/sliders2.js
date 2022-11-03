@@ -439,3 +439,244 @@ const featuresSliders = () => {
 };
 
 featuresSliders();
+
+// Different fiveStepsSlider options
+
+const FiveStepsSliderBehavior1 = function (Splide, Components, options) {
+	const Component = {
+		mount() {
+			this.fiveStepsSliderBehavior1();
+		},
+		fiveStepsSliderBehavior1() {
+			Splide.on('moved', (newIndex) => {
+				console.log(Splide);
+				// console.log(Splide.Components.Slides.getAt(newIndex));
+				const activeSlide = Splide.Components.Slides.getAt(newIndex);
+				const activeCard = activeSlide.slide.firstElementChild;
+				setTimeout(() => {
+					console.log('waited a second')
+					activeCard.setAttribute('data-state', 'opened');
+				}, 500);
+				
+				// Closing the other slides
+				const otherSlides = [...Splide.Components.Elements.slides].filter((slide) => {
+					return slide !== activeSlide.slide;
+				});
+				console.log(otherSlides);
+				otherSlides.forEach((slide) => {
+					slide.firstElementChild.setAttribute('data-state', 'closed');
+				});
+			});
+			const cardToggles = [...Splide.Components.Elements.list.children].map((slide) => {
+				return slide.querySelector('.clickUp-toggle');
+			});
+			const cards = [...Splide.Components.Elements.list.children];
+			const isHovered = (element) => {
+				return element.parentElement.querySelector(':hover') === element;
+			};
+
+			cardToggles.forEach((cardToggle, index) => {
+				cardToggle.addEventListener('click', () => {
+					Splide.go(index);
+				});
+			});
+			const sliderArrows = [...Splide.Components.Elements.list.children].map((slide) => {
+				return slide.querySelector('.slider-arrows');
+			});
+			sliderArrows.forEach((arrow) => {
+				arrow.addEventListener('click', () => {
+					Splide.go('>');
+				});
+			});
+			cards.forEach((card, index) => {
+				card.addEventListener('click', () => {
+					if (!isHovered(card.querySelector('.slider-arrows')) && !isHovered(card.querySelector('.clickUp-toggle'))) {
+						Splide.go(index);
+						console.log('clicked')
+						const activeSlide = Splide.Components.Slides.getAt(index);
+						const activeCard = activeSlide.slide.firstElementChild;
+						activeCard.setAttribute('data-state', 'opened');
+						// Closing the other slides
+						const otherSlides = [...Splide.Components.Elements.slides].filter((slide) => {
+							return slide !== activeSlide.slide;
+						});
+						console.log(otherSlides);
+						otherSlides.forEach((slide) => {
+							slide.firstElementChild.setAttribute('data-state', 'closed');
+						});
+					}
+				});
+			});
+		}
+	};
+	return Component;
+};
+
+if(document.getElementById('option1')) {
+	const fiveStepsSlider = new Splide('#option1', {
+		type: 'slide',
+		width: '100%',
+		startAt: 0,
+		perPage: 2,
+		perMove: 1,
+		rewind: true,
+		rewindByDrag: true,
+		flickMaxPages: 1,
+		flickPower: 50,
+		drag: true,
+		gap: '30px',
+		arrows: false,
+		pagination: true,
+		classes: {
+			pagination: 'splide__pagination slider-dots',
+			page: 'splide__pagination__page slider-dot',
+			arrows: 'splide__arrows slider__arrows',
+			arrow: 'splide__arrow slider__arrow',
+			prev: 'splide__arrow--prev slider__arrow--prev',
+			next: 'splide__arrow--next slider__arrow--next'
+		},
+		breakpoints: {
+			992: {
+				gap: 'clamp(16px, calc(1rem + ((1vw - 5.6px) * 3.2407)), 30px)'
+			},
+			560: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '80%'
+			},
+			360: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '100%'
+			}
+		}
+	}).mount({ FiveStepsSliderBehavior: FiveStepsSliderBehavior });
+
+}
+
+if(document.getElementById('option2')) {
+	const fiveStepsSlider = new Splide('#option2', {
+		type: 'slide',
+		width: '100%',
+		startAt: 0,
+		perPage: 2,
+		perMove: 1,
+		rewind: true,
+		rewindByDrag: true,
+		flickMaxPages: 1,
+		flickPower: 50,
+		drag: true,
+		gap: '30px',
+		arrows: false,
+		pagination: true,
+		classes: {
+			pagination: 'splide__pagination slider-dots',
+			page: 'splide__pagination__page slider-dot',
+			arrows: 'splide__arrows slider__arrows',
+			arrow: 'splide__arrow slider__arrow',
+			prev: 'splide__arrow--prev slider__arrow--prev',
+			next: 'splide__arrow--next slider__arrow--next'
+		},
+		breakpoints: {
+			992: {
+				gap: 'clamp(16px, calc(1rem + ((1vw - 5.6px) * 3.2407)), 30px)'
+			},
+			560: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '80%'
+			},
+			360: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '100%'
+			}
+		}
+	}).mount({ FiveStepsSliderBehavior: FiveStepsSliderBehavior });
+
+}
+
+if(document.getElementById('option3')) {
+	const fiveStepsSlider = new Splide('#option3', {
+		type: 'slide',
+		width: '100%',
+		startAt: 0,
+		perPage: 2,
+		perMove: 1,
+		rewind: true,
+		rewindByDrag: true,
+		flickMaxPages: 1,
+		flickPower: 50,
+		drag: true,
+		gap: '30px',
+		arrows: false,
+		pagination: true,
+		classes: {
+			pagination: 'splide__pagination slider-dots',
+			page: 'splide__pagination__page slider-dot',
+			arrows: 'splide__arrows slider__arrows',
+			arrow: 'splide__arrow slider__arrow',
+			prev: 'splide__arrow--prev slider__arrow--prev',
+			next: 'splide__arrow--next slider__arrow--next'
+		},
+		breakpoints: {
+			992: {
+				gap: 'clamp(16px, calc(1rem + ((1vw - 5.6px) * 3.2407)), 30px)'
+			},
+			560: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '80%'
+			},
+			360: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '100%'
+			}
+		}
+	}).mount({ FiveStepsSliderBehavior1: FiveStepsSliderBehavior1 });
+
+}
+
+if(document.getElementById('option4')) {
+	const fiveStepsSlider = new Splide('#option4', {
+		type: 'slide',
+		width: '100%',
+		startAt: 0,
+		perPage: 2,
+		perMove: 1,
+		rewind: true,
+		rewindByDrag: true,
+		flickMaxPages: 1,
+		flickPower: 50,
+		drag: true,
+		gap: '30px',
+		arrows: false,
+		pagination: true,
+		classes: {
+			pagination: 'splide__pagination slider-dots',
+			page: 'splide__pagination__page slider-dot',
+			arrows: 'splide__arrows slider__arrows',
+			arrow: 'splide__arrow slider__arrow',
+			prev: 'splide__arrow--prev slider__arrow--prev',
+			next: 'splide__arrow--next slider__arrow--next'
+		},
+		breakpoints: {
+			992: {
+				gap: 'clamp(16px, calc(1rem + ((1vw - 5.6px) * 3.2407)), 30px)'
+			},
+			560: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '80%'
+			},
+			360: {
+				perPage: 1,
+				perMove: 1,
+				fixedWidth: '100%'
+			}
+		}
+	}).mount({ FiveStepsSliderBehavior1: FiveStepsSliderBehavior1 });
+
+}
+

@@ -235,6 +235,13 @@
 	background-repeat: no-repeat;
 }
 
+
+/* Testing diferent version of the slider */
+
+.sales-steps[data-state="opened"] .wobble {
+	animation-name: none;
+}
+
 /* Social Proof */
 
 .social-proof-banner {
