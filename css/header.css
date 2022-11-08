@@ -6,6 +6,7 @@
 	/* width: min(calc(100vw - (var(--default-drag-n-drop-gutter) * 2)), 1110px); */
 	width: 100vw;
 	align-items: center;
+	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
 	/* For testing */
@@ -43,8 +44,10 @@
 
 .header__brand img {
 	max-width: 100%;
-	object-fit: contain;
-	object-position: center;
+	-o-object-fit: contain;
+	   object-fit: contain;
+	-o-object-position: center;
+	   object-position: center;
 }
 
 .header__nav {

@@ -35,8 +35,10 @@ we will wrap them in a div and use object-fit on the img themselves
 .card__image {
 	width: 100%;
 	height: 200px;
-	object-fit: cover;
-	object-position: center;
+	-o-object-fit: cover;
+	   object-fit: cover;
+	-o-object-position: center;
+	   object-position: center;
 	border-radius: 8px 8px 0 0;
 }
 

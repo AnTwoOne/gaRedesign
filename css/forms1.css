@@ -40,11 +40,55 @@
 	height: var(--form-input-small-height);
 }
 
+.form-control::-webkit-input-placeholder {
+	font-size: var(--font-size-1);
+	color: var(--dark);
+	line-height: var(--line-height-9);
+	letter-spacing: var(--font-letterspacing-7);
+}
+
+.form-control::-moz-placeholder {
+	font-size: var(--font-size-1);
+	color: var(--dark);
+	line-height: var(--line-height-9);
+	letter-spacing: var(--font-letterspacing-7);
+}
+
+.form-control:-ms-input-placeholder {
+	font-size: var(--font-size-1);
+	color: var(--dark);
+	line-height: var(--line-height-9);
+	letter-spacing: var(--font-letterspacing-7);
+}
+
+.form-control::-ms-input-placeholder {
+	font-size: var(--font-size-1);
+	color: var(--dark);
+	line-height: var(--line-height-9);
+	letter-spacing: var(--font-letterspacing-7);
+}
+
 .form-control::placeholder {
 	font-size: var(--font-size-1);
 	color: var(--dark);
 	line-height: var(--line-height-9);
 	letter-spacing: var(--font-letterspacing-7);
+}
+
+.form-control[data-variant='small']::-webkit-input-placeholder {
+	font-size: var(--font-size-0);
+}
+
+.form-control[data-variant='small']::-moz-placeholder {
+	font-size: var(--font-size-0);
+}
+
+.form-control[data-variant='small']:-ms-input-placeholder {
+	font-size: var(--font-size-0);
+}
+
+.form-control[data-variant='small']::-ms-input-placeholder {
+	font-size: var(--font-size-0);
 }
 
 .form-control[data-variant='small']::placeholder {
@@ -67,6 +111,26 @@ textarea.form-control {
 .form-control[data-validation='error'] {
 	color: var(--error);
 	border: 1px solid var(--error);
+}
+
+.form-control[data-validation='error']::-webkit-input-placeholder {
+	color: var(--error);
+	font-size: var(--font-size-0);
+}
+
+.form-control[data-validation='error']::-moz-placeholder {
+	color: var(--error);
+	font-size: var(--font-size-0);
+}
+
+.form-control[data-validation='error']:-ms-input-placeholder {
+	color: var(--error);
+	font-size: var(--font-size-0);
+}
+
+.form-control[data-validation='error']::-ms-input-placeholder {
+	color: var(--error);
+	font-size: var(--font-size-0);
 }
 
 .form-control[data-validation='error']::placeholder {
@@ -231,7 +295,9 @@ input[type='file']::file-selector-button {
 /* Color Input */
 
 .form-control[type='color'] {
-	appearance: none;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
 	padding: 0.2em;
 	width: 2em;
 	height: 2em;
@@ -250,7 +316,9 @@ input[type='file']::file-selector-button {
 }
 
 .form-select {
-	appearance: none;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
 	width: 100%;
 }
 

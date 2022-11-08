@@ -8,6 +8,8 @@
 
 .accordion__target {
 	max-height: 0px;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	overflow: hidden;
 	opacity: 0;

@@ -83,6 +83,8 @@
 
 .js-pricing-table__rows-active {
 	max-height: 100vh;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	transition: 1s ease;
 }
@@ -95,6 +97,8 @@
 /* Customer Case Section */
 
 .customer-avatar {
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 }
 

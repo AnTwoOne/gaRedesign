@@ -30,6 +30,8 @@
   border-radius: var(--radius-0);
   font-family: var(--text-font);
   text-decoration: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   flex-shrink: 0;
 }

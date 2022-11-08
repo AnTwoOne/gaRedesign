@@ -1,6 +1,8 @@
 .chips {
 	font-size: var(--font-size-00);
 	border-radius: var(--radius-pill);
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 	padding: 0.25rem 0.7rem;
 	font-family: var(--text-font);
@@ -35,7 +37,8 @@
 /* Avatars */
 
 .author-avatar {
-	clip-path: circle(50% at 50% 50%);
+	-webkit-clip-path: circle(50% at 50% 50%);
+	        clip-path: circle(50% at 50% 50%);
 	width: 60px;
 	height: 60px;
 }
@@ -167,6 +170,8 @@
 	transform: none;
 	width: auto;
 	position: absolute;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 }
 
@@ -176,6 +181,8 @@
 	display: flex;
 	gap: 10px;
 	font-size: 10px;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 	margin-left: auto;
 	margin-right: auto;
@@ -242,7 +249,8 @@
 /* Custom slider classes to move somewhere else after */
 
 .custom-slider__overflow-and-clipped {
-	clip-path: inset(-100vw -100vw -100vw 0);
+	-webkit-clip-path: inset(-100vw -100vw -100vw 0);
+	        clip-path: inset(-100vw -100vw -100vw 0);
 }
 
 /* .custom-slider__overflow-and-clipped .splide__track {
@@ -254,28 +262,34 @@
 }
 
 .custom-slider[data-clip='left'] {
-	clip-path: inset(-100vw -100vw -100vw 0);
+	-webkit-clip-path: inset(-100vw -100vw -100vw 0);
+	        clip-path: inset(-100vw -100vw -100vw 0);
 }
 
 .custom-slider[data-clip='right'] {
-	clip-path: inset(0 0 -100vw -100vw);
+	-webkit-clip-path: inset(0 0 -100vw -100vw);
+	        clip-path: inset(0 0 -100vw -100vw);
 }
 
 .custom-slider[data-clip='both'] {
-	clip-path: inset(0 0 0 0);
+	-webkit-clip-path: inset(0 0 0 0);
+	        clip-path: inset(0 0 0 0);
 }
 
 .custom-slider[data-clip='none'] {
-	clip-path: inset(-350px -350px -350px -350px);
+	-webkit-clip-path: inset(-350px -350px -350px -350px);
+	        clip-path: inset(-350px -350px -350px -350px);
 }
 
 .custom-slider[data-clip='none'][data-direction='vertical'] {
-	clip-path: inset(-33% -33% -33% -33%);
+	-webkit-clip-path: inset(-33% -33% -33% -33%);
+	        clip-path: inset(-33% -33% -33% -33%);
 }
 
 @media screen and (max-width: 992px) {
 	.custom-slider[data-clip='none'][data-direction='vertical'] {
-		clip-path: inset(0 0 0 -33%);
+		-webkit-clip-path: inset(0 0 0 -33%);
+		        clip-path: inset(0 0 0 -33%);
 	}
 }
 

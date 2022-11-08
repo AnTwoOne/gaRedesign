@@ -240,25 +240,30 @@
 	width: 100%;
 	height: 100%;
 	/* object-fit: cover; */
-	object-position: center;
+	-o-object-position: center;
+	   object-position: center;
 	/* aspect-ratio: 4/5; */
 	border-radius: inherit;
 }
 
 .img__wrapper[data-crop='circle'] {
-	clip-path: circle(50% at 50% 50%);
+	-webkit-clip-path: circle(50% at 50% 50%);
+	        clip-path: circle(50% at 50% 50%);
 }
 
 .img__wrapper[data-fit='cover'] img {
-	object-fit: cover;
+	-o-object-fit: cover;
+	   object-fit: cover;
 }
 
 .img__wrapper[data-fit='contain'] img {
-	object-fit: contain;
+	-o-object-fit: contain;
+	   object-fit: contain;
 }
 
 .img__wrapper[data-position='top'] img {
-	object-position: top;
+	-o-object-position: top;
+	   object-position: top;
 }
 
 .img__wrapper[data-ratio='1/1'] img {
@@ -291,6 +296,22 @@
 
 :is([data-ratio='story']) {
 	aspect-ratio: var(--ratio-story);
+}
+
+@support not (aspect-ratio: 9/16) {
+	:is([data-ratio='story']) {
+		.element::before {
+			float: left;
+			padding-top: 177.78%;
+			content: "";
+		  }
+		
+		  .element::after {
+			display: block;
+			content: "";
+			clear: both;
+		  }
+	}
 }
 
 /* Portrait */
@@ -470,6 +491,36 @@
 
 /* Animations from animate.css */
 
+@-webkit-keyframes wobble {
+	from {
+	  transform: translate3d(0, 0, 0);
+	}
+  
+	15% {
+	  transform: translate3d(-2%, 0, 0) rotate3d(0, 0, 1, -5deg);
+	}
+  
+	30% {
+	  transform: translate3d(2%, 0, 0) rotate3d(0, 0, 1, 3deg);
+	}
+  
+	45% {
+	  transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -3deg);
+	}
+  
+	60% {
+	  transform: translate3d(2%, 0, 0) rotate3d(0, 0, 1, 2deg);
+	}
+  
+	75% {
+	  transform: translate3d(-2%, 0, 0) rotate3d(0, 0, 1, -1deg);
+	}
+  
+	to {
+	  transform: translate3d(0, 0, 0);
+	}
+  }
+
 @keyframes wobble {
 	from {
 	  transform: translate3d(0, 0, 0);
@@ -507,6 +558,20 @@
 	animation-iteration-count: infinite;
   } */
 
+  @-webkit-keyframes pulse {
+	from {
+	  transform: scale3d(1, 1, 1);
+	}
+  
+	50% {
+	  transform: scale3d(1.1, 1.1, 1.1);
+	}
+  
+	to {
+	  transform: scale3d(1, 1, 1);
+	}
+  }
+
   @keyframes pulse {
 	from {
 	  transform: scale3d(1, 1, 1);
@@ -522,8 +587,12 @@
   }
   
   .pulse {
-	animation-name: pulse;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 2;
-	animation-duration: 0.5s;
+	-webkit-animation-name: pulse;
+	        animation-name: pulse;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
+	-webkit-animation-iteration-count: 2;
+	        animation-iteration-count: 2;
+	-webkit-animation-duration: 0.5s;
+	        animation-duration: 0.5s;
   }

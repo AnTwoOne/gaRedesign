@@ -100,6 +100,8 @@
 		margin-top: -1.5rem;
 		padding: 5rem 0;
 		width: 60vw;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
 		height: fit-content;
 		min-height: 101vh;
 		gap: 0.5rem;
@@ -119,7 +121,8 @@
 	}
 
 	.header__nav::-webkit-scrollbar {
-		appearance: none;
+		-webkit-appearance: none;
+		        appearance: none;
 	}
 
 	.header__nav .header-nav__item,
@@ -201,6 +204,8 @@
 	.mega-menu__grid {
 		flex-direction: column;
 		justify-content: flex-start;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
 		width: fit-content;
 		padding: 0;
 		max-height: 100%;
