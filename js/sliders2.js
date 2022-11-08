@@ -522,6 +522,16 @@ const TogglePulse = function (Splide, Components, options) {
 			this.togglePulse();
 		},
 		togglePulse () {
+			function isTouchDevice(){
+				return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+			}
+			
+			if(isTouchDevice()===true) {
+				alert('Touch Device'); //your logic for touch device
+			}
+			else {
+				alert('Not a Touch Device'); //your logic for non touch device
+			}
 			//When the elements are in the viewport, add the class pulse 
 			const isHovered = (element) => {
 				return element.parentElement.querySelector(':hover') === element;
