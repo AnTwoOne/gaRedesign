@@ -123,7 +123,8 @@
 	top: 0;
 }
 
-.sales-steps__content .display-h2 {
+.sales-steps__content .display-h2,
+.sales-steps__content .display-h3 {
 	color: var(--white);
 }
 
