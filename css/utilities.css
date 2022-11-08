@@ -577,8 +577,34 @@
 	  transform: scale3d(1, 1, 1);
 	}
   
-	50% {
+	10% {
 	  transform: scale3d(1.1, 1.1, 1.1);
+	}
+
+	20% {
+		transform: scale3d(1, 1, 1);
+	}
+
+	30% {
+		transform: scale3d(1.1, 1.1, 1.1);
+	}
+
+	40% {
+		transform: scale3d(1, 1, 1);
+	}
+  
+	to {
+	  transform: scale3d(1, 1, 1);
+	}
+  }
+
+  @keyframes pulse-faster {
+	from {
+	  transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		transform: scale3d(1.1, 1.1, 1.1);
 	}
   
 	to {
@@ -586,13 +612,24 @@
 	}
   }
   
-  .pulse {
+  .pulse-initial {
 	-webkit-animation-name: pulse;
 	        animation-name: pulse;
 	-webkit-animation-timing-function: ease-in-out;
 	        animation-timing-function: ease-in-out;
-	-webkit-animation-iteration-count: 2;
-	        animation-iteration-count: 2;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-duration: 3s;
+	        animation-duration: 3s;
+  }
+
+  .pulse-faster { 
+	-webkit-animation-name: pulse-faster;
+	        animation-name: pulse-faster;
+			-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
 	-webkit-animation-duration: 0.5s;
 	        animation-duration: 0.5s;
   }

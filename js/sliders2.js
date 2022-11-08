@@ -523,6 +523,11 @@ const TogglePulse = function (Splide, Components, options) {
 		},
 		togglePulse () {
 			//When the elements are in the viewport, add the class pulse 
+			const isHovered = (element) => {
+				return element.parentElement.querySelector(':hover') === element;
+			};
+			const allToggles = Splide.root.querySelectorAll('.clickUp-toggle');
+				console.log(allToggles)
 			const slides = [...Splide.Components.Slides.get()];
 			slides.forEach(slide => {
 				const card = slide.slide.firstElementChild;
@@ -534,24 +539,26 @@ const TogglePulse = function (Splide, Components, options) {
 				}
 				const callback = (entries, observer) => {
 					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-								cardToggle.classList.add('pulse');
+						if (entry.isIntersecting ) {
+							cardToggle.classList.add('pulse-initial');
 						} else {
-							cardToggle.classList.remove('pulse');
+							cardToggle.classList.remove('pulse-initial');
 						}
 					});
 				}
 				let observer = new IntersectionObserver(callback, options); 
-				let target = card;
+				let target = cardToggle;
 				observer.observe(target);
 				//For each card, on hover add the toggle the class pulse to the toggle
 				card.addEventListener('mouseenter', () => {
-					cardToggle.classList.add('pulse');
-					cardToggle.style.animationIterationCount = 'infinite';
+					console.log('mouse entered')
+					allToggles.forEach(toggle => toggle.classList.remove('pulse-initial') )
+					cardToggle.classList.add('pulse-faster');
+					
 				})
 				card.addEventListener('mouseleave', () => {
-					cardToggle.classList.remove('pulse');
-					cardToggle.style.animationIterationCount = '2';
+					cardToggle.classList.remove('pulse-faster');
+					allToggles.forEach(toggle => toggle.classList.add('pulse-initial') )
 				})
 			});
 
