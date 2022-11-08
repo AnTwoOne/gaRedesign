@@ -1,3 +1,5 @@
+
+
 // Custom extensions
 const scaleDownInactive = function (Splide, Components, options) {
 	const Component = {
@@ -131,25 +133,33 @@ const FiveStepsSliderBehavior = function (Splide, Components, options) {
 			this.fiveStepsSliderBehavior();
 		},
 		fiveStepsSliderBehavior() {
+			//Get the card toggles
 			const cardToggles = [...Splide.Components.Elements.list.children].map((slide) => {
 				return slide.querySelector('.clickUp-toggle');
 			});
+			// console.log(cardToggles);
+			//Get the cards
 			const cards = [...Splide.Components.Elements.list.children];
+			// console.log(cards);
+			//Make a function that check if an element is hovered
 			const isHovered = (element) => {
 				return element.parentElement.querySelector(':hover') === element;
 			};
-
+			//For each card toggle on click move the slider to the corresponding slide
 			cardToggles.forEach((cardToggle, index) => {
 				cardToggle.addEventListener('click', () => {
 					Splide.go(index);
 				});
 			});
+			//Get the slider arrows inside the cards
 			const sliderArrows = [...Splide.Components.Elements.list.children].map((slide) => {
 				return slide.querySelector('.slider-arrows');
 			});
+			//For each slider arrow on click move the slider to the next slide
 			sliderArrows.forEach((arrow) => {
 				arrow.addEventListener('click', () => {
 					Splide.go('>');
+					//On move open the active card and close the others
 					Splide.on('moved', (newIndex) => {
 						console.log(Splide);
 						// console.log(Splide.Components.Slides.getAt(newIndex));
@@ -167,6 +177,7 @@ const FiveStepsSliderBehavior = function (Splide, Components, options) {
 					});
 				});
 			});
+			//For each card on click open the card, close the others and move the the corresponsding slide
 			cards.forEach((card, index) => {
 				card.addEventListener('click', () => {
 					if (!isHovered(card.querySelector('.slider-arrows')) && !isHovered(card.querySelector('.clickUp-toggle'))) {
@@ -447,70 +458,107 @@ const FiveStepsSliderBehavior1 = function (Splide, Components, options) {
 		mount() {
 			this.fiveStepsSliderBehavior1();
 		},
-		fiveStepsSliderBehavior1() {
-			Splide.on('moved', (newIndex) => {
-				console.log(Splide);
-				// console.log(Splide.Components.Slides.getAt(newIndex));
-				const activeSlide = Splide.Components.Slides.getAt(newIndex);
-				const activeCard = activeSlide.slide.firstElementChild;
-				setTimeout(() => {
-					console.log('waited a second')
-					activeCard.setAttribute('data-state', 'opened');
-				}, 500);
-				
-				// Closing the other slides
-				const otherSlides = [...Splide.Components.Elements.slides].filter((slide) => {
-					return slide !== activeSlide.slide;
-				});
-				console.log(otherSlides);
-				otherSlides.forEach((slide) => {
-					slide.firstElementChild.setAttribute('data-state', 'closed');
-				});
-			});
-			const cardToggles = [...Splide.Components.Elements.list.children].map((slide) => {
-				return slide.querySelector('.clickUp-toggle');
-			});
-			const cards = [...Splide.Components.Elements.list.children];
+		fiveStepsSliderBehavior1 () {
 			const isHovered = (element) => {
 				return element.parentElement.querySelector(':hover') === element;
 			};
-
-			cardToggles.forEach((cardToggle, index) => {
-				cardToggle.addEventListener('click', () => {
-					Splide.go(index);
+			// console.log(Splide)
+			// console.log(Components)
+			const slides = [...Splide.Components.Slides.get()];
+			// console.log(slides)
+			// When the slider moves, open the active slide and close the others
+			Splide.on('moved', (newIndex) => {
+				const activeSlide = Splide.Components.Slides.getAt(newIndex);
+				const activeCard = activeSlide.slide.firstElementChild;
+				const otherSlides = [...Splide.Components.Slides.get()].filter((slide) => { return slide !== activeSlide; });
+				const cardToggle = activeCard.querySelector('.clickUp-toggle');
+				setTimeout(() => {
+					console.log('waited a second')
+					activeCard.setAttribute('data-state', 'opened');
+					cardToggle.firstElementChild.classList.replace('fa-plus', 'fa-xmark');
+				}, 500);
+				otherSlides.forEach((slide) => {
+					slide.slide.firstElementChild.setAttribute('data-state', 'closed');
+					slide.slide.querySelector('.clickUp-toggle').firstElementChild.classList.replace('fa-xmark', 'fa-plus');
 				});
 			});
-			const sliderArrows = [...Splide.Components.Elements.list.children].map((slide) => {
-				return slide.querySelector('.slider-arrows');
-			});
-			sliderArrows.forEach((arrow) => {
-				arrow.addEventListener('click', () => {
-					Splide.go('>');
-				});
-			});
-			cards.forEach((card, index) => {
-				card.addEventListener('click', () => {
-					if (!isHovered(card.querySelector('.slider-arrows')) && !isHovered(card.querySelector('.clickUp-toggle'))) {
-						Splide.go(index);
-						console.log('clicked')
-						const activeSlide = Splide.Components.Slides.getAt(index);
-						const activeCard = activeSlide.slide.firstElementChild;
-						activeCard.setAttribute('data-state', 'opened');
-						// Closing the other slides
-						const otherSlides = [...Splide.Components.Elements.slides].filter((slide) => {
-							return slide !== activeSlide.slide;
-						});
-						console.log(otherSlides);
-						otherSlides.forEach((slide) => {
-							slide.firstElementChild.setAttribute('data-state', 'closed');
-						});
+			slides.forEach(slide => {
+				const card = slide.slide.firstElementChild;
+				const cardToggle = card.querySelector('.clickUp-toggle');
+				const sliderArrows = card.querySelector('.slider-arrows');
+				slide.slide.addEventListener('click', () => {
+					//If the slide is opened and the user clicks on the card, close it
+					if (card.getAttribute('data-state') === 'opened' && !isHovered(sliderArrows) && !isHovered(cardToggle)) {
+						card.setAttribute('data-state', 'closed');
+						cardToggle.firstElementChild.classList.replace('fa-xmark', 'fa-plus');
+					}
+					// If the slide is closed and the user clicks on the card, open it
+					else if (card.getAttribute('data-state') === 'closed' && !isHovered(sliderArrows) && !isHovered(cardToggle)) {
+						card.setAttribute('data-state', 'opened');
+						cardToggle.firstElementChild.classList.replace('fa-plus', 'fa-xmark');
+					}
+					if (!isHovered(sliderArrows) && !isHovered(cardToggle)) {
+						Splide.go(slide.index);
 					}
 				});
-			});
+				cardToggle.addEventListener('click', () => {
+					console.log('toggle clicked')
+					Splide.go(slide.index);
+				});
+				sliderArrows.addEventListener('click', () => {
+					console.log('arrow clicked')
+					Splide.go('>');
+				});
+			})
+			
 		}
 	};
 	return Component;
 };
+
+const TogglePulse = function (Splide, Components, options) {
+	const Component = {
+		mount () {
+			this.togglePulse();
+		},
+		togglePulse () {
+			//When the elements are in the viewport, add the class pulse 
+			const slides = [...Splide.Components.Slides.get()];
+			slides.forEach(slide => {
+				const card = slide.slide.firstElementChild;
+				const cardToggle = card.querySelector('.clickUp-toggle');
+				let options = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 1.0
+				}
+				const callback = (entries, observer) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+								cardToggle.classList.add('pulse');
+						} else {
+							cardToggle.classList.remove('pulse');
+						}
+					});
+				}
+				let observer = new IntersectionObserver(callback, options); 
+				let target = card;
+				observer.observe(target);
+				//For each card, on hover add the toggle the class pulse to the toggle
+				card.addEventListener('mouseenter', () => {
+					cardToggle.classList.add('pulse');
+					cardToggle.style.animationIterationCount = 'infinite';
+				})
+				card.addEventListener('mouseleave', () => {
+					cardToggle.classList.remove('pulse');
+					cardToggle.style.animationIterationCount = '2';
+				})
+			});
+
+		}
+	}
+	return Component;
+}
 
 if(document.getElementById('option1')) {
 	const fiveStepsSlider = new Splide('#option1', {
@@ -596,51 +644,51 @@ if(document.getElementById('option2')) {
 
 }
 
-if(document.getElementById('option3')) {
-	const fiveStepsSlider = new Splide('#option3', {
-		type: 'slide',
-		width: '100%',
-		startAt: 0,
-		perPage: 2,
-		perMove: 1,
-		rewind: true,
-		rewindByDrag: true,
-		flickMaxPages: 1,
-		flickPower: 50,
-		drag: true,
-		gap: '30px',
-		arrows: false,
-		pagination: true,
-		classes: {
-			pagination: 'splide__pagination slider-dots',
-			page: 'splide__pagination__page slider-dot',
-			arrows: 'splide__arrows slider__arrows',
-			arrow: 'splide__arrow slider__arrow',
-			prev: 'splide__arrow--prev slider__arrow--prev',
-			next: 'splide__arrow--next slider__arrow--next'
-		},
-		breakpoints: {
-			992: {
-				gap: 'clamp(16px, calc(1rem + ((1vw - 5.6px) * 3.2407)), 30px)'
-			},
-			560: {
-				perPage: 1,
-				perMove: 1,
-				fixedWidth: '80%'
-			},
-			360: {
-				perPage: 1,
-				perMove: 1,
-				fixedWidth: '100%'
-			}
-		}
-	}).mount({ FiveStepsSliderBehavior1: FiveStepsSliderBehavior1 });
+// if(document.getElementById('option3')) {
+// 	const fiveStepsSlider = new Splide('#option3', {
+// 		type: 'slide',
+// 		width: '100%',
+// 		startAt: 0,
+// 		perPage: 2,
+// 		perMove: 1,
+// 		rewind: true,
+// 		rewindByDrag: true,
+// 		flickMaxPages: 1,
+// 		flickPower: 50,
+// 		drag: true,
+// 		gap: '30px',
+// 		arrows: false,
+// 		pagination: true,
+// 		classes: {
+// 			pagination: 'splide__pagination slider-dots',
+// 			page: 'splide__pagination__page slider-dot',
+// 			arrows: 'splide__arrows slider__arrows',
+// 			arrow: 'splide__arrow slider__arrow',
+// 			prev: 'splide__arrow--prev slider__arrow--prev',
+// 			next: 'splide__arrow--next slider__arrow--next'
+// 		},
+// 		breakpoints: {
+// 			992: {
+// 				gap: 'clamp(16px, calc(1rem + ((1vw - 5.6px) * 3.2407)), 30px)'
+// 			},
+// 			560: {
+// 				perPage: 1,
+// 				perMove: 1,
+// 				fixedWidth: '80%'
+// 			},
+// 			360: {
+// 				perPage: 1,
+// 				perMove: 1,
+// 				fixedWidth: '100%'
+// 			}
+// 		}
+// 	}).mount({ FiveStepsSliderBehavior1: FiveStepsSliderBehavior1 });
 
-}
+// }
 
 if(document.getElementById('option4')) {
 	const fiveStepsSlider = new Splide('#option4', {
-		type: 'slide',
+		type: 'loop',
 		width: '100%',
 		startAt: 0,
 		perPage: 2,
@@ -651,8 +699,8 @@ if(document.getElementById('option4')) {
 		flickPower: 50,
 		drag: true,
 		gap: '30px',
-		arrows: false,
-		pagination: true,
+		arrows: true,
+		pagination: false,
 		classes: {
 			pagination: 'splide__pagination slider-dots',
 			page: 'splide__pagination__page slider-dot',
@@ -676,7 +724,7 @@ if(document.getElementById('option4')) {
 				fixedWidth: '100%'
 			}
 		}
-	}).mount({ FiveStepsSliderBehavior1: FiveStepsSliderBehavior1 });
+	}).mount({ FiveStepsSliderBehavior1: FiveStepsSliderBehavior1, TogglePulse: TogglePulse });
 
 }
 

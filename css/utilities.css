@@ -500,9 +500,30 @@
 	}
   }
   
-  .wobble {
+  /* .wobble {
 	animation-name: wobble;
 	animation-duration: 1s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
+  } */
+
+  @keyframes pulse {
+	from {
+	  transform: scale3d(1, 1, 1);
+	}
+  
+	50% {
+	  transform: scale3d(1.1, 1.1, 1.1);
+	}
+  
+	to {
+	  transform: scale3d(1, 1, 1);
+	}
+  }
+  
+  .pulse {
+	animation-name: pulse;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 2;
+	animation-duration: 0.5s;
   }
