@@ -525,13 +525,6 @@ const TogglePulse = function (Splide, Components, options) {
 			function isTouchDevice(){
 				return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
 			}
-			
-			if(isTouchDevice()===true) {
-				alert('Touch Device'); //your logic for touch device
-			}
-			else {
-				alert('Not a Touch Device'); //your logic for non touch device
-			}
 			//When the elements are in the viewport, add the class pulse 
 			const isHovered = (element) => {
 				return element.parentElement.querySelector(':hover') === element;
@@ -560,6 +553,7 @@ const TogglePulse = function (Splide, Components, options) {
 				let target = cardToggle;
 				observer.observe(target);
 				//For each card, on hover add the toggle the class pulse to the toggle
+				if(isTouchDevice() === false) {
 				card.addEventListener('mouseenter', () => {
 					console.log('mouse entered')
 					allToggles.forEach(toggle => toggle.classList.remove('pulse-initial') )
@@ -570,6 +564,7 @@ const TogglePulse = function (Splide, Components, options) {
 					cardToggle.classList.remove('pulse-faster');
 					allToggles.forEach(toggle => toggle.classList.add('pulse-initial') )
 				})
+			}
 			});
 
 		}
