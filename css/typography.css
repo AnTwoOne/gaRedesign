@@ -23,7 +23,8 @@ li,
 span,
 input,
 div,
-button {
+button,
+label {
 	font-family: var(--text-font);
 	margin: 0;
 	color: var(--dark);

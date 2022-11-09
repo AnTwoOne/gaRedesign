@@ -27,13 +27,47 @@
     <a href="/analytics/demo-page-3.html" class="button-small" data-variant="outline" >Demo Page 3</a>
     <a href="/analytics/demo-page-4.html" class="button-small" data-variant="outline">Demo Page 4</a>
   </nav>
-  <main class="section-container">
-    <h1>Start</h1>
+  <main class="section-container gap-lg">
+    <h1>Form</h1>
     <p class="paragraph-medium">
-     This little website, is only for Demo purposes for the new theme.<br>
-     Have a look at the different components and let me know if some things are not the way they should be.<br>
-     With this and Figma, let's make room for an easy process! 
+     I am adding a form here with a submit button to test track things like form submissions and form abandonment.
     </p>
+      <form class="flex-col-center gap-m">
+        <label class="paragraph-medium" for="email">Email</label>
+        <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="john.doe@email.com"
+              class="form-control"
+              data-size="large"
+              data-align="right"
+            />
+          </div>
+          <label class="paragraph-medium" for="first_name" >First name</label>
+          <input
+              id="first_name"
+              type="text"
+              name="first_name"
+              placeholder="John"
+              class="form-control"
+              data-size="large"
+              data-align="right"
+            />
+          </div>
+          <label class="paragraph-medium" for="last-name">Last Name</label>
+          <input
+              id="last-name"
+              type="text"
+              name="last-name"
+              placeholder="Doe"
+              class="form-control"
+              data-size="large"
+              data-align="right"
+            />
+          </div>
+          <button type="submit" class="button-medium" data-variant="primary" data-action="form submit" data-form="test form"> Submit </button>
+      </form>
   </main>
 <body>
 </html>
