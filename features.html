@@ -14,9 +14,47 @@
 	<script defer type="module" src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide-core.min.css">
 	<script defer type="module" src="./js/beforeAfter.js"></script>
+	<script defer type="module" src="./js/stats.js"></script>
 	<script defer type="module" src="./js/sliders2.js"></script>
 	<script defer type="module" src="./js/dsr.js"></script>
 	<script defer src="https://kit.fontawesome.com/ae7bbcad81.js" crossorigin="anonymous"></script>
+	<script defer >
+		
+		let g2Review = HTMLElement;
+		
+		const fetchingG2Data =  (element, a, b, c, d) => {
+		let data = {};
+		window
+		  .fetch("https://www.g2.com/products/getaccept/rating_schema.json")
+		  .then((e) => e.json())
+		  .then((f) => {
+			  console.log(f)
+			data = f;
+			c = a.createElement(b);
+			c.type = "application/ld+json";
+			c.text = JSON.stringify(f);
+			d = a.getElementsByTagName(b)[0];
+			d.parentNode.insertBefore(c, d);
+		  })
+		  .then(() => {
+			console.log(data.aggregateRating.ratingValue);
+			let starRating = document.createElement("div");
+			let numberOfReview = data.aggregateRating.reviewCount;
+			starRating.id = "g2-star-rating";
+			starRating.style.cssText = "display: inline-block; position: relative; background-image: url('./assets/star-empty.svg'); background-size: 30px; background-position: 0 0; background-repeat: repeat-x; aspect-ratio:5/1; height: 30px;";
+			let starValue = document.createElement("div");
+			starValue.classList.add("g2-star-rating-value");
+			starValue.style.cssText = "display: inline-block; height: 101%; position: absolute; top: 0.5px; left: -0.5px; background-image: url('./assets/star.svg'); background-position: 0 0; background-repeat: repeat-x; background-size: 30px;"
+			starValue.style.width = `${data.aggregateRating.ratingValue * 10}%`;
+			starRating.appendChild(starValue);
+			element.appendChild(starRating);
+			let numberOfReviewElement = document.createElement("div");
+			numberOfReviewElement.classList.add("g2-number-of-review");
+			numberOfReviewElement.classList.add('paragraph-tiny');
+			numberOfReviewElement.innerHTML = `(${numberOfReview}) <strong>${data.aggregateRating.ratingValue / 2}</strong> out of <strong>5</strong>`;
+			element.appendChild(numberOfReviewElement);
+		  });
+	  }</script>
 </head>
 
 <body>
@@ -307,9 +345,24 @@
 						Share content, collaborate and negotiate with relevant stakeholders for a more engaging and personalized
 						digital selling experience.
 					</p>
-					<div class="hero__cta-container flex-row-start gap-s">
+					<div class="hero__cta-container flex-row-start gap-s wrap">
 						<a href="#" class="button-medium" data-variant="primary">Book a demo</a>
-						<img src="./assets/G2_logo_stars_reviews.svg" alt="" height="auto" width="50%">
+						<!-- <img src="./assets/G2_logo_stars_reviews.svg" alt="" height="auto" width="50%"> -->
+						<div id="" class="g2-star-rating-container flex-row-start align-center">
+							<a href="https://www.g2.com/products/getaccept/reviews?utm_source=review-widget"
+							title="Read reviews of GetAccept on G2">
+							<img class="full-width"
+								alt="Read GetAccept reviews on G2"
+								src="./assets/G2 logo.svg" />
+							</a>
+							<div id="g2-stars-hero-section" class="g2-stars-and-count flex-col-start justify-start">
+						
+							</div>
+						
+						</div>
+						<script>
+							  fetchingG2Data(document.querySelector("#g2-stars-hero-section"), document, "script");
+						</script>
 					</div>
 				</div>
 				<div class="hero__image span6" style="overflow: visible;">
@@ -330,8 +383,8 @@
 						<div class='before-after__container'>
 							<div class='img background-img'></div>
 							<div class='img foreground-img'></div>
-							<input type="range" min="1" max="100" value="1" class="before-after__slider" name='before-after__slider'
-								id="before-after__slider">
+							<input type="range" min="1" max="100" value="1" class="before-after__slider"
+								name='before-after__slider' id="before-after__slider">
 							<div class='before-after__slider-button'></div>
 						</div>
 						<div class="pain-vs-gain flex-row-start gap-s align-center">
@@ -347,13 +400,13 @@
 					<p class="label-medium">From pain to gain</p>
 					<h2 class="display-h2">Don't let digital sales kill your deals</h2>
 					<p class="paragrahp-medium">
-						If long email threads with  stakeholders cc'd in and multiple pdf attachments is how you sell today, you're creating an escape room experience for your buyers. But there's a new way: <strong>dealrooms</strong>.
+						If long email threads with stakeholders cc'd in and multiple pdf attachments is how you sell today,
+						you're creating an escape room experience for your buyers. But there's a new way:
+						<strong>dealrooms</strong>.
 					</p>
 				</div>
-
 			</div>
 		</div>
-
 	</section>
 	<!-- 5 Steps Slider -->
 	<section class="section" data-background='primary'>
@@ -667,6 +720,7 @@
 	<!-- Feature Tabs -->
 	<section class="section flex-col-center">
 		<div class="section-container flex-col-center flow-lg">
+			<!-- Section Heading -->
 			<div class="row-fluid features__headline flex-col-start">
 				<div class="span6 flex-col-start gap-m">
 					<h2 class="h2-fluid">Main Features</h2>
@@ -675,6 +729,7 @@
 			</div>
 			<!-- Desktop Version -->
 			<div class="features-tab-container row-fluid flex-row-start">
+				<!-- Tab Openers -->
 				<div class="tab-openers span4 flex-col-start gap-m">
 					<button class="feature-tab__opener tab-opener js-tab-opener-active display-h4"
 						data-opens="1">E-Signature</button>
@@ -691,6 +746,7 @@
 						More Features
 					</a>
 				</div>
+				<!-- Tabs -->
 				<div class="tabs__aside js-calculate-height span8 tablet-span8">
 					<!-- Tab content 1 -->
 					<div class="features-tab__content tab-content js-tab-content-active flex-row-start justify-start gap-m"
@@ -1126,6 +1182,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- Slider 4 -->
 				<div class="row-fluid">
 					<h4 class="display-h4">CPQ</h4>
 					<div class="splide feature__slider">
@@ -1182,6 +1239,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- Slider 5 -->
 				<div class="row-fluid">
 					<h4 class="display-h4">Analytics</h4>
 					<div class="splide feature__slider">
@@ -1238,6 +1296,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- Slider 6 -->
 				<div class="row-fluid">
 					<h4 class="display-h4">Mutual Actions Plan</h4>
 					<div class="splide feature__slider">
@@ -1318,6 +1377,34 @@
 					</div>
 					<div class="g2-rating flex-col-start">
 						<img src="./assets/DSR_page/G2 review stars with number.svg" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Social Proof v2 -->
+	<section class="section">
+		<div class="section-container">
+			<div class="row-fluid flex-row-start">
+				<div class="flex-col-start gap-m span6 justify-start">
+					<h2 class="display-h2">Category leaders and creators</h2>
+					<p class="paragraph-medium">We're proud to be the OG's of the Digital Sales Room category.</p>
+					<div class="hero__cta-container flex-row-start gap-s wrap">
+						<!-- <img src="./assets/G2_logo_stars_reviews.svg" alt="" height="auto" width="50%"> -->
+						<div class="g2-star-rating-container flex-row-start align-center">
+							<a href="https://www.g2.com/products/getaccept/reviews?utm_source=review-widget"
+							title="Read reviews of GetAccept on G2">
+							<img class="full-width"
+								alt="Read GetAccept reviews on G2"
+								src="./assets/G2 logo.svg" />
+							</a>
+							<div id="g2-stars-social-proof-section" class="g2-stars-and-count flex-col-start justify-start">
+						<!-- The G2 Rating will be added here -->
+							</div>
+						</div>
+						<script>
+							  fetchingG2Data(document.querySelector("#g2-stars-social-proof-section"), document, "script");
+						</script>
 					</div>
 				</div>
 			</div>
@@ -1445,6 +1532,41 @@
 		</div>
 	</section>
 	<!-- Stats -->
+	<section class="section stats-section">
+		<div class="section-container flex-col-center">
+			<div class="row-fluid flex-row-start">
+				<div class="stat-container span4 tablet-span4 flex-col-center gap-m text-center">
+					<div class="animated-donut js-calculate-height" data-percent="75">
+						<svg class="circle-chart" viewbox="0 0 250 250" width="250" height="250" xmlns="http://www.w3.org/2000/svg">
+							<circle class="circle-chart__background" stroke="#efefef" stroke-width="20" fill="none" cx="125" cy="125" r="115" />
+							<circle class="circle-chart__circle" stroke="var(--primary-accent)" stroke-width="20" stroke-dasharray="134,534" stroke-linecap="square" fill="none" cx="125" cy="125" r="115" />
+						  </svg>
+						<div class="stats-number">0%</div>
+					</div>
+					<p class="stat-label paragrpah-medium">of customers qualify their purchase experience as very complex or difficult.</p>
+				</div>
+				<div class="stat-container span4 tablet-span4 flex-col-center gap-m text-center">
+					<div class="animated-donut js-calculate-height" data-percent="17">
+						<svg class="circle-chart" viewbox="0 0 250 250" width="250" height="250" xmlns="http://www.w3.org/2000/svg">
+							<circle class="circle-chart__background" stroke="#efefef" stroke-width="20" fill="none" cx="125" cy="125" r="115" />
+							<circle class="circle-chart__circle" stroke="var(--primary-accent)" stroke-width="20" stroke-dasharray="134,534" stroke-linecap="square" fill="none" cx="125" cy="125" r="115" />
+						  </svg>
+						<div class="stats-number">0%</div>
+					</div>
+					<p class="stat-label paragrpah-medium">of a b2b customer's buying journey is spent meeting with suppliers.</p>
+				</div>
+				<div class="stat-container span4 tablet-span4 flex-col-center gap-m text-center">
+					<div class="animated-donut js-calculate-height" data-percent="60">
+						<svg class="circle-chart" viewbox="0 0 250 250" width="250" height="250" xmlns="http://www.w3.org/2000/svg">
+							<circle class="circle-chart__background" stroke="#efefef" stroke-width="20" fill="none" cx="125" cy="125" r="115" />
+							<circle class="circle-chart__circle" stroke="var(--primary-accent)" stroke-width="20" stroke-dasharray="134,534" stroke-linecap="square" fill="none" cx="125" cy="125" r="115" />
+						  </svg>
+						<div class="stats-number">0%</div>
+					</div>
+					<p class="stat-label paragrpah-medium">of all deals end as status quo where no decision is made.</p>
+				</div>
+		</div>
+	</section>
 	<!-- Learn more -->
 	<section class="section" data-background="primary">
 		<div class="section-container flex-col-start flow-lg"">
