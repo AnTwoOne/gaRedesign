@@ -53,3 +53,13 @@ footer[data-background='dark'] .social-icon svg path {
 	min-width: 100%;
 	margin: 50px 0;
 }
+
+@media screen and (max-width: 560px) {
+	.footer__column {
+		justify-content: center!important;
+		text-align: center;
+	}
+	.social-icons {
+		justify-content: center!important;
+	}
+}

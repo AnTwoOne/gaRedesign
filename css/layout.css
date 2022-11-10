@@ -29,27 +29,27 @@
 }
 
 :where([data-background='primary']) {
-	background-color: var(--bg-primary-tint-1);
+	background-color: var(--bg-primary-tint-1)!important;
 }
 
 :where([data-background='grey']) {
-	background-color: var(--placeholder);
+	background-color: var(--placeholder)!important;
 }
 
 :where([data-background='green']) {
-	background-color: var(--bg-green-tint-1);
+	background-color: var(--bg-green-tint-1)!important;
 }
 
 :where([data-background='secondary']) {
-	background-color: var(--bg-secondary-tint-1);
+	background-color: var(--bg-secondary-tint-1)!important;
 }
 
 :where([data-background='pink']) {
-	background-color: var(--bg-pink-tint-1);
+	background-color: var(--bg-pink-tint-1)!important;
 }
 
 :where([data-background='yellow']) {
-	background-color: var(--bg-yellow-tint-1);
+	background-color: var(--bg-yellow-tint-1)!important;
 }
 
 /* Section Container */
