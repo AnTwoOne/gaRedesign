@@ -26,6 +26,10 @@
 		let data = {};
 		window
 		  .fetch("https://www.g2.com/products/getaccept/rating_schema.json")
+		  .catch (err => {
+			document.querySelectorAll('.g2-review-fallback').forEach(el => el.style.display = 'flex')
+			document.querySelectorAll('.g2-logo').forEach(el => el.style.display = 'none')
+			})
 		  .then((e) => e.json())
 		  .then((f) => {
 			  console.log(f)
@@ -35,6 +39,14 @@
 			c.text = JSON.stringify(f);
 			d = a.getElementsByTagName(b)[0];
 			d.parentNode.insertBefore(c, d);
+		  })
+		  .then (() => {
+			  console.log(data)
+			  if(data == {}) {
+				  document.querySelectorAll('.g2-review-fallback').forEach((e) => {
+					  e.style.display = 'flex';
+				  })
+			  }
 		  })
 		  .then(() => {
 			console.log(data.aggregateRating.ratingValue);
@@ -53,8 +65,9 @@
 			numberOfReviewElement.classList.add('paragraph-tiny');
 			numberOfReviewElement.innerHTML = `(${numberOfReview}) <strong>${data.aggregateRating.ratingValue / 2}</strong> out of <strong>5</strong>`;
 			element.appendChild(numberOfReviewElement);
-		  });
-	  }</script>
+		  })
+	  }
+	</script>
 </head>
 
 <body>
@@ -341,17 +354,15 @@
 			<div class="row-fluid">
 				<div class="hero__content span6 tablet-span6 flex-col-start flow-lg">
 					<h1 class="display-h1">The leading digital sales room</h1>
-					<p class="paragraph-large">Create a secure shared space for your business dialogues.
-						Share content, collaborate and negotiate with relevant stakeholders for a more engaging and personalized
-						digital selling experience.
+					<p class="paragraph-large">60% of quotes end without a decision. That's a lot of lost revenue. Want to claim it back? Find out how a digital sales room powers up an engaging buyer experience to shorten your sales cycle.
 					</p>
 					<div class="hero__cta-container flex-row-start gap-s wrap">
 						<a href="#" class="button-medium" data-variant="primary">Book a demo</a>
-						<!-- <img src="./assets/G2_logo_stars_reviews.svg" alt="" height="auto" width="50%"> -->
+						<img class="g2-review-fallback" src="./assets/G2_logo_stars_reviews.svg" alt="" height="auto" width="50%" style="display: none;">
 						<div id="" class="g2-star-rating-container flex-row-start align-center">
 							<a href="https://www.g2.com/products/getaccept/reviews?utm_source=review-widget"
 							title="Read reviews of GetAccept on G2">
-							<img class="full-width"
+							<img class="g2-logo"
 								alt="Read GetAccept reviews on G2"
 								src="./assets/G2 logo.svg" />
 							</a>
@@ -361,7 +372,8 @@
 						
 						</div>
 						<script>
-							  fetchingG2Data(document.querySelector("#g2-stars-hero-section"), document, "script");
+								fetchingG2Data(document.querySelector("#g2-stars-hero-section"), document, "script");
+							  
 						</script>
 					</div>
 				</div>
@@ -1408,7 +1420,7 @@
 					<h2 class="display-h2">Category leaders and creators</h2>
 					<p class="paragraph-medium span8">We're proud to be the OG's of the Digital Sales Room category.</p>
 					<div class="flex-row-start gap-s wrap">
-						<!-- <img src="./assets/G2_logo_stars_reviews.svg" alt="" height="auto" width="50%"> -->
+						<img class="g2-review-fallback" src="./assets/DSR_page/G2 review stars with number.svg" alt="" height="auto" width="" style="display: none;">
 						<div class="g2-star-rating-container flex-row-start align-center">
 							<a href="https://www.g2.com/products/getaccept/reviews?utm_source=review-widget"
 							title="Read reviews of GetAccept on G2">
@@ -1606,7 +1618,7 @@
 		<div class="row-fluid">
 			<div class="card span4 tablet-span4">
 				<div class="card__image-wrapper">
-					<img src="./assets/Cool.jpg" alt="" class="card__image" />
+					<img src="./assets/DSR_page/blogcards1.webp" alt="" class="card__image" />
 				</div>
 				<div class="card__body">
 					<div class="chips" data-color="secondary">Digital Sales Room</div>
@@ -1621,7 +1633,7 @@
 			</div>
 			<div class="card span4 tablet-span4">
 				<div class="card__image-wrapper">
-					<img src="./assets/Colors.jpg" alt="" class="card__image" />
+					<img src="./assets/DSR_page/blogcards2.webp" alt="" class="card__image" />
 				</div>
 				<div class="card__body">
 					<div class="chips" data-color="secondary">Digital Sales Room</div>
@@ -1638,7 +1650,7 @@
 			</div>
 			<div class="card span4 tablet-span4">
 				<div class="card__image-wrapper">
-					<img src="./assets/Lake.jpg" alt="" class="card__image" />
+					<img src="./assets/DSR_page/blogcards3.webp" alt="" class="card__image" />
 				</div>
 				<div class="card__body">
 					<div class="chips" data-color="secondary">Digital Sales Room</div>
