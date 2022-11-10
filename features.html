@@ -41,10 +41,10 @@
 			let starRating = document.createElement("div");
 			let numberOfReview = data.aggregateRating.reviewCount;
 			starRating.id = "g2-star-rating";
-			starRating.style.cssText = "display: inline-block; position: relative; background-image: url('./assets/star-empty.svg'); background-size: 30px; background-position: 0 0; background-repeat: repeat-x; aspect-ratio:5/1; height: 30px;";
+			starRating.style.cssText = "display: inline-block; position: relative; background-image: url('./assets/Star-empty.svg'); background-size: 30px; background-position: 0 0; background-repeat: repeat-x; aspect-ratio:5/1; height: 30px;";
 			let starValue = document.createElement("div");
 			starValue.classList.add("g2-star-rating-value");
-			starValue.style.cssText = "display: inline-block; height: 101%; position: absolute; top: 0.5px; left: -0.5px; background-image: url('./assets/star.svg'); background-position: 0 0; background-repeat: repeat-x; background-size: 30px;"
+			starValue.style.cssText = "display: inline-block; height: 101%; position: absolute; top: 0.5px; left: -0.5px; background-image: url('./assets/Star.svg'); background-position: 0 0; background-repeat: repeat-x; background-size: 30px;"
 			starValue.style.width = `${data.aggregateRating.ratingValue * 10}%`;
 			starRating.appendChild(starValue);
 			element.appendChild(starRating);
