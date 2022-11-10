@@ -13,7 +13,7 @@
 }
 
 .feature-tab__opener {
-	color: var(--bg-primary-tint-2);
+	color: #CDC6C1;
 }
 
 .js-tab-opener-active {
@@ -95,7 +95,7 @@
 	background-position: top;
 }
 
-#feature4 {
+#stats {
 	background-image: url('../assets/DSR_page/stats.webp');
 }
 

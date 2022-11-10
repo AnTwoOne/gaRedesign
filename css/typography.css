@@ -92,28 +92,28 @@ button {
 .paragraph-large {
 	font-size: var(--font-size-2);
 	line-height: 28px;
-	letter-spacing: var(--font-letterspacing-0);
+	letter-spacing: var(--font-letterspacing-1);
 	font-weight: var(--font-weight-0);
 }
 
 .paragraph-medium {
 	font-size: var(--font-size-1);
 	line-height: 26px;
-	letter-spacing: var(--font-letterspacing-0);
+	letter-spacing: var(--font-letterspacing-1);
 	font-weight: var(--font-weight-0);
 }
 
 .paragraph-small {
 	font-size: var(--font-size-0);
 	line-height: 22px;
-	letter-spacing: var(--font-letterspacing-0);
+	letter-spacing: var(--font-letterspacing-1);
 	font-weight: var(--font-weight-0);
 }
 
 .paragraph-tiny {
 	font-size: var(--font-size-00);
 	line-height: 20px;
-	letter-spacing: var(--font-letterspacing-0);
+	letter-spacing: var(--font-letterspacing-1);
 	font-weight: var(--font-weight-0);
 }
 
@@ -221,7 +221,7 @@ The below will control the automatic resizing happening when the browser shrinks
 
 .header-nav__link,
 .mega-menu__link-list-heading {
-	font-weight: var(--font-weight-1);
+	font-weight: var(--font-weight-2);
 	font-size: var(--font-size-0);
 	line-height: 24px;
 	letter-spacing: var(--font-letterspacing-2);

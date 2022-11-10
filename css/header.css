@@ -6,8 +6,7 @@
 	/* width: min(calc(100vw - (var(--default-drag-n-drop-gutter) * 2)), 1110px); */
 	width: 100vw;
 	align-items: center;
-	position: -webkit-sticky;
-	position: sticky;
+	position: fixed;
 	top: 0;
 	/* For testing */
 	z-index: 100;
