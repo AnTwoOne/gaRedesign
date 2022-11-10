@@ -314,3 +314,23 @@
 		border-radius: 20px;
 	}
 }
+
+
+/* Stats */
+
+.animated-donut {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+}
+
+.animated-donut .stats-number {
+	position: absolute;
+	font-size: 72px;
+
+}
+
+.circle-chart {
+	position: absolute;
+}
