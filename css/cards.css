@@ -198,3 +198,30 @@ This is a preliminary list of variant, Edu didn't decide on design
 }
 
 /* Cards Dimentions */
+
+
+/* Pricing Cards */
+
+.pricing__card {
+	padding: 30px 20px;
+	border-radius: var(--radius-1);
+	background-color: var(--white);
+}
+
+.pricing__card[data-variant='popular'] {
+	background-color: var(--bg-primary-tint-1);
+}
+
+.pricing__hero {
+	padding-top: 64px;
+}
+
+.compare-plan__button {
+	display: none;
+}
+
+@media screen and (max-width: 560px) {
+	.compare-plan__button {
+		display: flex;
+	}
+}

@@ -4,7 +4,7 @@
 }
 
 .js-tab-content-active {
-	display: flex;
+	display: grid;
 }
 
 .features__sliders {
@@ -27,7 +27,7 @@
 
 .feature-tab__col {
 	height: auto;
-	width: 50%;
+	grid-area: 2;
 }
 
 .feature-tab__col[data-transform='up'] {
